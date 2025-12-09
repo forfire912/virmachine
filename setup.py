@@ -28,20 +28,10 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-
-    ],
-    python_requires=">=3.7",
-    install_requires=[],
-    extras_require={
-        "dev": [
-            "pytest>=7.0",
-            "pytest-cov>=4.0",
-            "pytest-asyncio>=0.20",
-            "black>=22.0",
-            "flake8>=4.0",
-            "mypy>=0.950",  
-        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
@@ -54,9 +44,19 @@ setup(
         "pyzmq>=24.0",
         "aiohttp>=3.8",
     ],
+    extras_require={
+        "dev": [
+            "pytest>=7.0",
+            "pytest-cov>=4.0",
+            "pytest-asyncio>=0.20",
+            "black>=22.0",
+            "flake8>=4.0",
+            "mypy>=0.950",
+        ],
+    },
     entry_points={
         "console_scripts": [
-            "virmachine=virmachine.cli:main",
+            "virmachine=virmachine.interactive:main",
         ],
     },
 )
