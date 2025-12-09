@@ -31,6 +31,12 @@ MANIFEST
 # *.manifest - commented out to keep our virmachine.spec
 # *.spec - commented out to keep our virmachine.spec
 *.spec.bak
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -119,7 +125,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -139,3 +145,6 @@ Thumbs.db
 release/
 *.zip
 *.tar.gz
+/tmp/
+*.db
+*.sqlite
