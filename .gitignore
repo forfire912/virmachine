@@ -28,6 +28,9 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
+# *.manifest - commented out to keep our virmachine.spec
+# *.spec - commented out to keep our virmachine.spec
+*.spec.bak
 *.manifest
 *.spec
 
@@ -134,6 +137,14 @@ dmypy.json
 Thumbs.db
 
 # Project specific
+/examples/*.json
+/tests/*.json
+/tmp/*.json
+
+# Build artifacts
+release/
+*.zip
+*.tar.gz
 /tmp/
 *.db
 *.sqlite
