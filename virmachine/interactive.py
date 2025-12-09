@@ -23,6 +23,31 @@ class VirMachineInteractive:
         self.simulator = Simulator()
         self.language = 'zh_CN'
         set_language(self.language)
+    
+    def _convert_to_number(self, value: str):
+        """
+        尝试将字符串转换为数字
+        Try to convert string to number
+        
+        Returns the converted number or original string
+        """
+        if not value:
+            return value
+        
+        # Try integer first
+        try:
+            return int(value)
+        except ValueError:
+            pass
+        
+        # Try float
+        try:
+            return float(value)
+        except ValueError:
+            pass
+        
+        # Return as string if conversion fails
+        return value
         
     def clear_screen(self):
         """清屏 / Clear screen"""
@@ -33,11 +58,11 @@ class VirMachineInteractive:
         print("\n" + "=" * 70)
         print("║" + " " * 68 + "║")
         if self.language == 'zh_CN':
-            print("║" + "国产化虚拟样机系统 - 交互式界面".center(74) + "║")
+            print("║" + "国产化虚拟样机系统 - 交互式界面".center(76) + "║")
             print("║" + "Virtual Prototyping Machine - Interactive Interface".center(68) + "║")
         else:
             print("║" + "Virtual Prototyping Machine - Interactive Interface".center(68) + "║")
-            print("║" + "国产化虚拟样机系统 - 交互式界面".center(74) + "║")
+            print("║" + "国产化虚拟样机系统 - 交互式界面".center(76) + "║")
         print("║" + " " * 68 + "║")
         print("=" * 70)
         
@@ -137,15 +162,7 @@ class VirMachineInteractive:
                 if not key:
                     break
                 value = self.get_input(f"  属性值 [{key}]")
-                # 尝试转换为数字
-                try:
-                    if '.' in value:
-                        value = float(value)
-                    else:
-                        value = int(value)
-                except ValueError:
-                    pass  # 保持为字符串
-                properties[key] = value
+                properties[key] = self._convert_to_number(value)
             
             component = Component(name, comp_type, properties)
             self.prototype.add_component(component)
@@ -171,15 +188,7 @@ class VirMachineInteractive:
                 if not key:
                     break
                 value = self.get_input(f"  Property value [{key}]")
-                # Try to convert to number
-                try:
-                    if '.' in value:
-                        value = float(value)
-                    else:
-                        value = int(value)
-                except ValueError:
-                    pass  # Keep as string
-                properties[key] = value
+                properties[key] = self._convert_to_number(value)
             
             component = Component(name, comp_type, properties)
             self.prototype.add_component(component)
