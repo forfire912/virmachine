@@ -28,11 +28,8 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-# *.manifest - commented out to keep our virmachine.spec
-# *.spec - commented out to keep our virmachine.spec
+# Keep our virmachine.spec but ignore backup files
 *.spec.bak
-*.manifest
-*.spec
 
 # Installer logs
 pip-log.txt
