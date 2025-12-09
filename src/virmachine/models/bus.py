@@ -12,6 +12,7 @@ from enum import Enum
 from dataclasses import dataclass, field
 from queue import Queue
 import time
+import random
 
 from virmachine.models import BaseModel, ModelConfig, ModelType, registry
 
@@ -122,7 +123,6 @@ class BusModel(BaseModel):
         self.total_bytes += len(message.data)
         
         # 模拟错误率
-        import random
         if random.random() < self.config.error_rate:
             self.error_count += 1
             return

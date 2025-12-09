@@ -12,6 +12,7 @@ from enum import Enum
 import json
 import csv
 import io
+import xml.etree.ElementTree as ET
 
 
 class DataFormat(Enum):
@@ -103,8 +104,6 @@ class XMLExtractor(DataExtractor):
     
     def parse(self, content: str) -> Any:
         """解析XML数据"""
-        # 简化实现，实际应使用xml.etree.ElementTree
-        import xml.etree.ElementTree as ET
         root = ET.fromstring(content)
         return self._xml_to_dict(root)
     
