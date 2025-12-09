@@ -15,6 +15,7 @@ VirMachine 是一个轻量级的虚拟样机系统，提供以下核心功能：
 - 🧪 **仿真测试** - 支持基础仿真、压力测试、性能测试等多种测试类型
 - 🌐 **多语言支持** - 内置中英文双语支持，易于国产化应用
 - 💾 **数据持久化** - JSON格式的数据存储，便于版本控制和共享
+- 🖥️ **交互式界面** - 菜单驱动的交互式CLI，无需编程即可使用
 - 🎯 **简单易用** - 清晰的API设计，快速上手
 
 VirMachine is a lightweight virtual prototyping system with the following core features:
@@ -23,6 +24,7 @@ VirMachine is a lightweight virtual prototyping system with the following core f
 - 🧪 **Simulation & Testing** - Support for basic simulation, stress testing, performance testing, and more
 - 🌐 **Multi-language Support** - Built-in Chinese and English support for localization
 - 💾 **Data Persistence** - JSON-based data storage for version control and sharing
+- 🖥️ **Interactive Interface** - Menu-driven interactive CLI for no-code usage
 - 🎯 **Easy to Use** - Clear API design for quick start
 
 ## 快速开始 / Quick Start
@@ -72,6 +74,9 @@ print(f"组件数量 / Components: {result.data['component_count']}")
 ### 运行示例 / Run Examples
 
 ```bash
+# 运行交互式界面 / Run interactive interface (推荐 / Recommended)
+python virmachine_interactive.py
+
 # 运行演示程序 / Run demo program
 python examples/demo.py
 
@@ -80,6 +85,46 @@ python -m pytest tests/
 ```
 
 ## 主要功能 / Main Features
+
+### 0. 交互式界面 / Interactive Interface (新功能 / New!)
+
+无需编程，通过菜单驱动的交互式界面使用虚拟样机系统：
+
+Use the virtual prototyping system through a menu-driven interface without coding:
+
+```bash
+# 启动交互式界面 / Launch interactive interface
+python virmachine_interactive.py
+```
+
+**功能特性 / Features:**
+- ✅ 创建和管理虚拟样机 / Create and manage virtual prototypes
+- ✅ 添加和配置组件 / Add and configure components
+- ✅ 运行各类仿真测试 / Run various simulation tests
+- ✅ 保存和加载样机数据 / Save and load prototype data
+- ✅ 中英文界面切换 / Switch between Chinese and English
+- ✅ 友好的菜单导航 / User-friendly menu navigation
+
+**界面示例 / Interface Example:**
+```
+======================================================================
+║                                                                    ║
+║                  国产化虚拟样机系统 - 交互式界面                       ║
+║        Virtual Prototyping Machine - Interactive Interface         ║
+║                                                                    ║
+======================================================================
+
+【主菜单】
+  1. 创建新的虚拟样机
+  2. 添加组件
+  3. 查看虚拟样机信息
+  4. 运行仿真测试
+  5. 保存虚拟样机
+  6. 加载虚拟样机
+  7. 切换语言 (当前: 中文)
+  0. 退出系统
+----------------------------------------------------------------------
+```
 
 ### 1. 虚拟样机管理 / Virtual Prototype Management
 
@@ -154,18 +199,20 @@ print(get_text('simulation_completed'))  # Output: Simulation completed
 
 ```
 virmachine/
-├── virmachine/           # 主包 / Main package
-│   ├── __init__.py      # 包初始化 / Package init
-│   ├── core.py          # 核心类定义 / Core classes
-│   ├── simulator.py     # 仿真器 / Simulator
-│   └── localization.py  # 本地化支持 / Localization
-├── examples/            # 示例代码 / Example code
-│   └── demo.py         # 演示程序 / Demo program
-├── tests/              # 测试代码 / Test code
+├── virmachine/                  # 主包 / Main package
+│   ├── __init__.py             # 包初始化 / Package init
+│   ├── core.py                 # 核心类定义 / Core classes
+│   ├── simulator.py            # 仿真器 / Simulator
+│   ├── localization.py         # 本地化支持 / Localization
+│   └── interactive.py          # 交互式界面 / Interactive interface
+├── examples/                   # 示例代码 / Example code
+│   └── demo.py                # 演示程序 / Demo program
+├── tests/                      # 测试代码 / Test code
 │   └── test_virmachine.py
-├── setup.py            # 安装配置 / Setup config
-├── LICENSE             # 许可证 / License
-└── README.md           # 说明文档 / Documentation
+├── virmachine_interactive.py   # 交互式启动脚本 / Interactive launcher
+├── setup.py                    # 安装配置 / Setup config
+├── LICENSE                     # 许可证 / License
+└── README.md                   # 说明文档 / Documentation
 ```
 
 ## 开发 / Development

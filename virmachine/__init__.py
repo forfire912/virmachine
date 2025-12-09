@@ -11,11 +11,13 @@ __author__ = "VirMachine Team"
 from .core import VirtualPrototype, Component
 from .simulator import Simulator
 from .localization import get_text, set_language
+from .interactive import VirMachineInteractive
 
 __all__ = [
     'VirtualPrototype',
     'Component', 
     'Simulator',
     'get_text',
-    'set_language'
+    'set_language',
+    'VirMachineInteractive'
 ]
