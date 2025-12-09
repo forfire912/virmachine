@@ -1,0 +1,129 @@
+name: Build and Release VirMachine
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggered on version tags like v1.0.0
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  build-windows:
+    name: Build Windows Executable
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install -e .
+        
+    - name: Build executable
+      run: |
+        pyinstaller --clean virmachine.spec
+        
+    - name: Test executable
+      run: |
+        dist\VirMachine.exe --help || echo "Executable created successfully"
+        
+    - name: Create distribution package
+      run: |
+        mkdir release
+        copy dist\VirMachine.exe release\
+        copy README.md release\
+        copy LICENSE release\
+        echo "VirMachine - 国产化虚拟样机系统" > release\README.txt
+        echo "" >> release\README.txt
+        echo "使用方法 / Usage:" >> release\README.txt
+        echo "双击 VirMachine.exe 启动交互式界面" >> release\README.txt
+        echo "Double-click VirMachine.exe to launch the interactive interface" >> release\README.txt
+        
+    - name: Create ZIP archive
+      run: |
+        cd release
+        powershell Compress-Archive -Path * -DestinationPath ..\VirMachine-Windows-x64.zip
+        cd ..
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: VirMachine-Windows-x64
+        path: VirMachine-Windows-x64.zip
+        
+  create-release:
+    name: Create GitHub Release
+    needs: build-windows
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Download Windows artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: VirMachine-Windows-x64
+        
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: VirMachine v${{ steps.get_version.outputs.VERSION }}
+        body: |
+          # 国产化虚拟样机系统 / Virtual Prototyping Machine
+          
+          ## 版本 / Version: ${{ steps.get_version.outputs.VERSION }}
+          
+          ### 下载 / Downloads
+          
+          - **Windows (64-bit)**: VirMachine-Windows-x64.zip
+          
+          ### 使用说明 / Usage Instructions
+          
+          **Windows用户 / Windows Users:**
+          1. 下载 VirMachine-Windows-x64.zip
+          2. 解压缩文件
+          3. 双击 VirMachine.exe 启动程序
+          
+          **English:**
+          1. Download VirMachine-Windows-x64.zip
+          2. Extract the archive
+          3. Double-click VirMachine.exe to launch
+          
+          ### 功能特性 / Features
+          
+          - 🔧 组件化虚拟样机设计 / Component-based virtual prototype design
+          - 🧪 仿真测试功能 / Simulation and testing capabilities
+          - 🌐 中英文双语支持 / Bilingual Chinese/English support
+          - 🖥️ 交互式界面 / Interactive CLI interface
+          - 💾 数据持久化 / Data persistence (JSON)
+          
+          ### 系统要求 / System Requirements
+          
+          - **操作系统 / OS**: Windows 10/11 (64-bit)
+          - **内存 / RAM**: 最少 512 MB / Minimum 512 MB
+          - **磁盘空间 / Disk Space**: 约 50 MB / Approximately 50 MB
+          
+          ---
+          
+          完整文档请访问: [README.md](https://github.com/forfire912/virmachine)
+          
+          For full documentation, visit: [README.md](https://github.com/forfire912/virmachine)
+        files: |
+          VirMachine-Windows-x64.zip
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -28,8 +28,9 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-*.manifest
-*.spec
+# *.manifest - commented out to keep our virmachine.spec
+# *.spec - commented out to keep our virmachine.spec
+*.spec.bak
 
 # Unit test / coverage reports
 htmlcov/
@@ -133,3 +134,8 @@ Thumbs.db
 /examples/*.json
 /tests/*.json
 /tmp/*.json
+
+# Build artifacts
+release/
+*.zip
+*.tar.gz

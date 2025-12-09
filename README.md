@@ -215,6 +215,53 @@ virmachine/
 └── README.md                   # 说明文档 / Documentation
 ```
 
+## 构建Windows可执行文件 / Build Windows Executable
+
+### 自动构建 / Automated Build
+
+项目配置了GitHub Actions自动构建流程。当推送版本标签时，会自动构建Windows可执行文件并创建Release。
+
+The project is configured with GitHub Actions for automated builds. When a version tag is pushed, it automatically builds the Windows executable and creates a release.
+
+```bash
+# 创建并推送版本标签 / Create and push version tag
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+### 手动构建 / Manual Build
+
+**Windows系统:**
+```cmd
+# 安装PyInstaller / Install PyInstaller
+pip install pyinstaller
+
+# 运行构建脚本 / Run build script
+build_exe.bat
+
+# 可执行文件位置 / Executable location
+dist\VirMachine.exe
+```
+
+**Linux/Mac (交叉编译):**
+```bash
+# 安装PyInstaller / Install PyInstaller
+pip install pyinstaller
+
+# 运行构建脚本 / Run build script
+chmod +x build_exe.sh
+./build_exe.sh
+
+# 可执行文件位置 / Executable location
+dist/VirMachine.exe
+```
+
+### 下载预编译版本 / Download Pre-built Version
+
+访问 [Releases](https://github.com/forfire912/virmachine/releases) 页面下载最新的Windows可执行文件。
+
+Visit the [Releases](https://github.com/forfire912/virmachine/releases) page to download the latest Windows executable.
+
 ## 开发 / Development
 
 ```bash

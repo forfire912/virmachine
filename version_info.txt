@@ -1,0 +1,32 @@
+# VirMachine Version Information
+# Used for Windows executable metadata
+
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(1, 0, 0, 0),
+    prodvers=(1, 0, 0, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo(
+      [
+      StringTable(
+        u'040904B0',
+        [StringStruct(u'CompanyName', u'VirMachine Team'),
+        StringStruct(u'FileDescription', u'国产化虚拟样机系统 - Virtual Prototyping Machine'),
+        StringStruct(u'FileVersion', u'1.0.0.0'),
+        StringStruct(u'InternalName', u'VirMachine'),
+        StringStruct(u'LegalCopyright', u'Copyright (c) 2025 VirMachine Team'),
+        StringStruct(u'OriginalFilename', u'VirMachine.exe'),
+        StringStruct(u'ProductName', u'VirMachine - 虚拟样机系统'),
+        StringStruct(u'ProductVersion', u'1.0.0.0')])
+      ]
+    ),
+    VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
+  ]
+)
