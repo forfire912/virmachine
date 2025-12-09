@@ -108,7 +108,8 @@ def example_save_load():
     
     # 保存到文件
     import os
-    filepath = "/tmp/drone_prototype.json"
+    import tempfile
+    filepath = os.path.join(tempfile.gettempdir(), "drone_prototype.json")
     print(f"\n保存虚拟样机到: {filepath}")
     prototype.to_json(filepath)
     

@@ -23,6 +23,8 @@ _translations: Dict[str, Dict[str, str]] = {
         'error': '错误',
         'success': '成功',
         'warning': '警告',
+        'no_components_error': '虚拟样机没有组件',
+        'simulation_error': '仿真错误',
     },
     'en_US': {
         'prototype_created': 'Virtual prototype created',
@@ -37,6 +39,8 @@ _translations: Dict[str, Dict[str, str]] = {
         'error': 'Error',
         'success': 'Success',
         'warning': 'Warning',
+        'no_components_error': 'No components in prototype',
+        'simulation_error': 'Simulation error',
     }
 }
 

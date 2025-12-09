@@ -130,5 +130,6 @@ dmypy.json
 Thumbs.db
 
 # Project specific
-*.json
-!setup.json
+/examples/*.json
+/tests/*.json
+/tmp/*.json

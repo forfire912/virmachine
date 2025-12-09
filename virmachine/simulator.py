@@ -86,9 +86,10 @@ class Simulator:
         try:
             # 基础验证
             if not prototype.components:
+                error_msg = get_text('no_components_error')
                 return SimulationResult(
                     False,
-                    f"{get_text('error')}: 虚拟样机没有组件 / No components in prototype",
+                    f"{get_text('error')}: {error_msg}",
                     {}
                 )
             
@@ -115,7 +116,7 @@ class Simulator:
         except Exception as e:
             result = SimulationResult(
                 False,
-                f"{get_text('error')}: {str(e)}",
+                f"{get_text('simulation_error')}: {str(e)}",
                 {'error': str(e)}
             )
         
