@@ -34,7 +34,13 @@ jobs:
         
     - name: Test executable
       run: |
-        dist\VirMachine.exe --help || echo "Executable created successfully"
+        if (Test-Path dist\VirMachine.exe) {
+          Write-Host "✓ Executable created successfully: dist\VirMachine.exe"
+          Get-Item dist\VirMachine.exe | Select-Object Name,Length,LastWriteTime
+        } else {
+          Write-Error "× Executable not found!"
+          exit 1
+        }
         
     - name: Create distribution package
       run: |
